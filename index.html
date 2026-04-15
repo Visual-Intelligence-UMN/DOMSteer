@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <title>Beyond Chat and Clicks</title>
+    <meta name="description" content="GUI Agents as In-Situ Assistants through Live Interface Transformation" />
+    <!-- <link rel="icon" type="image/svg+xml" href="img/fav.svg" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div id="progressbar-parent">
+        <div id="progressbar"></div>
+      </div>
+      <div class="container">
+        <!-- <p class="project-name accent">DOMSteer</p> -->
+        <h1>
+          Beyond Chat and Clicks: GUI Agents as In-Situ Assistants through
+          Live Interface Transformation
+        </h1>
+        <p class="authors">
+          Pan Hao, Rishi Selvakumaran*, Jacob Sun*, Qianwen Wang
+        </p>
+        <p class="smaller">University of Minnesota, Minneapolis, MN, USA</p>
+        <div class="buttons">
+          <a
+            class="button chrome-btn"
+            href="pub/build.zip"
+            download
+            title="Download Chrome Extension"
+            ><i class="fa fa-chrome" aria-hidden="true"></i>Chrome Extension</a
+          >
+          <a
+            class="button"
+            href="pub/paper.pdf"
+            target="_blank"
+            title="Read the Paper"
+            ><i class="fa fa-file-text-o" aria-hidden="true"></i>Read the Paper</a
+          >
+          <span
+            class="button disabled"
+            title="Code (Coming Soon)"
+            ><i class="fa fa-github" aria-hidden="true"></i>Code (coming soon)</span
+          >
+          <!-- <a class="button" href="#demos" title="Demos"
+            ><i class="fa fa-play" aria-hidden="true"></i>Demos</a
+          >
+          <a class="button" href="#bibtex" title="BibTeX"
+            ><i class="fa fa-code" aria-hidden="true"></i>BibTeX</a
+          > -->
+          <!-- <a class="button" href="#" title="TestDataset"
+          ><i class="fa fa-code" aria-hidden="true"></i>TestDataset</a> -->
+        </div>
+      </div>
+      <a
+        id="down-arrow"
+        class="arrow-button"
+        href="#teaser"
+        title="Go to main content"
+      >
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </a>
+    </header>
+
+    <section id="teaser">
+      <div class="container">
+        <h2>What acts beyond chat and clicks?</h2>
+        <p>
+          Complex visual interfaces are powerful yet have a steep learning curve, as users must navigate feature-rich visual interfaces while reasoning about domain-specific operations. Existing approaches either deliver assistance through a separate chat-based interaction, or require substantial application-specific engineering to build support natively into each interface. To address the gaps, we propose <i>in-situ assistance</i>: a mode of support delivered directly within any live web interface through lightweight, browser-level interventions on the Document Object Model (DOM), without rebuilding the application or modifying its underlying logic.
+        </p>
+        <img
+          src="img/teaser.png"
+          title="DOMSteer Teaser"
+          class="full-width"
+          alt="DOMSteer teaser"
+          loading="lazy"
+        />
+        <p class="figure-caption">
+          <b>DOMSteer</b> delivers assistance directly within the live interface through three DOM operations: (A) <b>Mutate</b> that adapts existing elements, (B) <b>Insert</b> that adds new contextual content, and (C) <b>Recompose</b> that reorganizes interface structure.
+        </p>
+        <p>
+          We contribute a design space and a computational pipeline for DOM-mediated in-situ assistance, characterizing how GUI agents can insert, mutate, or recompose web elements to make the interface easier for users to understand, use, and navigate. We instantiate <i>in-situ assistance</i> in DOMSteer, a Chrome extension that interprets a user's help request and live interface context, grounds it to relevant UI elements, and executes reversible DOM manipulations directly on the live page to deliver assistance, including contextual tooltips, control highlighting, layout reorganization.
+        </p>
+      </div>
+    </section>
+
+    <section id="demo-video">
+      <div class="container">
+        <p class="task-text"><span class="task-label">Task:</span> How to design a generalizable neural network that works for all four classification datasets?</p>
+        <video autoplay muted loop playsinline width="100%">
+          <source src="clips/general-clip.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <!-- <section id="video">
+      <div class="container">
+        <video controls width="100%">
+          <source src="vid/domsteer.mp4" type="video/mp4" />
+          <track src="vid/DOMSteer-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
+          Your browser does not support the video tag.
+        </video>
+        <p class="spacing-above gray">
+          We explore GUI agent action space beyond chat and clicks. DOMSteer delivers <b>in-situ assistance</b> directly within the live interface through three DOM operations: (A) <b class="clr-mutate">Mutate</b> that adapts existing elements, (B) <b class="clr-insert">Insert</b> that adds new contextual content, and (C) <b class="clr-recompose">Recompose</b> that reorganizes interface structure.
+        </p>
+      </div>
+    </section> -->
+
+    <section id="design-pipeline">
+      <div class="container">
+        <div class="two-col">
+          <div class="two-col-item">
+            <h2>Design Space</h2>
+            <img
+              src="img/design-space.png"
+              title="DOMSteer Design Space"
+              class="full-width"
+              alt="DOMSteer design space"
+              loading="lazy"
+            />
+            <p>
+              Our design space organizes in-situ assistance by how it intervenes in an existing interface. <b class="clr-insert">Insert</b> adds new assistance content. <b class="clr-mutate">Mutate</b> modifies existing elements to make them easier to notice, understand, or operate. <b class="clr-recompose">Recompose</b> reorganizes elements to better match the user's task. We exclude <b>removal</b> to preserve the original interface's full functionality.
+            </p>
+          </div>
+          <div class="two-col-item">
+            <h2>Pipeline</h2>
+            <img
+              src="img/pipeline.png"
+              title="DOMSteer Pipeline"
+              class="full-width"
+              alt="DOMSteer pipeline"
+              loading="lazy"
+            />
+            <p>
+              DOMSteer is a Chrome Manifest V3 extension. <b class="primary">Knowledge Acquisition</b> captures the interface state and indexes elements. <b class="accent">Assistance Recommendation</b> generates grounded DOM operations from user context. <b class="primary">Assistance Delivery</b> applies the transformations directly to the live page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="use-cases-highlight">
+      <div class="container">
+        <p class="gray">Example use cases across different interfaces:</p>
+        <div class="two-col interface-grid">
+          <div class="interface-card">
+            <p class="interface-desc"><i>"How do I get started?"</i> &mdash; <b class="clr-insert">Insert</b> tooltips to walk through the interface guidance.</p>
+            <video autoplay muted loop playsinline class="interface-vid">
+              <source src="clips/insert-tips-clip.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="interface-card">
+            <p class="interface-desc"><i>"Can I track historical settings?"</i> &mdash; <b class="clr-insert">Insert</b> a widget to capture snapshots of the interface.</p>
+            <video autoplay muted loop playsinline class="interface-vid">
+              <source src="clips/insert-widget.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="interface-card">
+            <p class="interface-desc"><i>"What do the node colors mean?"</i> &mdash; <b class="clr-recompose">Recompose</b> the order of the node types.</p>
+            <video autoplay muted loop playsinline class="interface-vid">
+              <source src="clips/recompose-order.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="interface-card">
+            <p class="interface-desc"><i>"Why does the map look empty?"</i> &mdash; <b class="clr-mutate">Mutate</b> the dropdown representation to a button group.</p>
+            <video autoplay muted loop playsinline class="interface-vid">
+              <source src="clips/mutate-rep.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="use-cases" hidden>
+      <div class="container">
+        <h2>Use Cases</h2>
+
+        <!-- (A) Mutate -->
+        <div class="operation-group">
+          <h3 class="operation-label"><span class="label-tag accent-bg">A</span> Mutate</h3>
+          <div class="tab-bar">
+            <button class="tab active" data-tab="mutate-0">Representation</button>
+            <button class="tab" data-tab="mutate-1">Sort &amp; Style</button>
+            <button class="tab" data-tab="mutate-2">Text, Sort &amp; Style</button>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel active" id="mutate-0">
+              <img src="img/mutate-representation.gif" alt="Mutate: Representation" loading="lazy" />
+              <p>Changes visual representations of data elements.</p>
+            </div>
+            <div class="tab-panel" id="mutate-1">
+              <img src="img/mutate-sort-style.gif" alt="Mutate: Sort & Style" loading="lazy" />
+              <p>Modifies sorting order and visual styling of elements.</p>
+            </div>
+            <div class="tab-panel" id="mutate-2">
+              <img src="img/mutate-text-sort-style.gif" alt="Mutate: Text, Sort & Style" loading="lazy" />
+              <p>Adapts text content, sorting, and styling together.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- (B) Insert -->
+        <div class="operation-group">
+          <h3 class="operation-label"><span class="label-tag primary-bg">B</span> Insert</h3>
+          <div class="tab-bar">
+            <button class="tab active" data-tab="insert-0">Tooltips</button>
+            <button class="tab" data-tab="insert-1">Widget</button>
+            <button class="tab" data-tab="insert-2">Search</button>
+            <button class="tab" data-tab="insert-3">Refine Button</button>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel active" id="insert-0">
+              <img src="img/insert-tooltips.gif" alt="Insert: Tooltips" loading="lazy" />
+              <p>Adds informative tooltips to interface elements.</p>
+            </div>
+            <div class="tab-panel" id="insert-1">
+              <img src="img/insert-widget.gif" alt="Insert: Widget" loading="lazy" />
+              <p>Inserts self-contained interactive widgets.</p>
+            </div>
+            <div class="tab-panel" id="insert-2">
+              <img src="img/insert-search.gif" alt="Insert: Search" loading="lazy" />
+              <p>Adds search functionality into the interface.</p>
+            </div>
+            <div class="tab-panel" id="insert-3">
+              <img src="img/insert-refine-button.gif" alt="Insert: Refine Button" loading="lazy" />
+              <p>Inserts action buttons for refining results.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- (C) Recompose -->
+        <div class="operation-group">
+          <h3 class="operation-label"><span class="label-tag accent-bg">C</span> Recompose</h3>
+          <div class="tab-bar">
+            <button class="tab active" data-tab="recompose-0">Re-layout</button>
+            <button class="tab" data-tab="recompose-1">Regroup</button>
+            <button class="tab" data-tab="recompose-2">Reorder</button>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel active" id="recompose-0">
+              <img src="img/recompose-layout.gif" alt="Recompose: Re-layout" loading="lazy" />
+              <p>Restructures spatial arrangement of components.</p>
+            </div>
+            <div class="tab-panel" id="recompose-1">
+              <img src="img/recompose-regroup-fields.gif" alt="Recompose: Regroup" loading="lazy" />
+              <p>Reorganizes fields into logical groups.</p>
+            </div>
+            <div class="tab-panel" id="recompose-2">
+              <img src="img/recompose-reorder.gif" alt="Recompose: Reorder" loading="lazy" />
+              <p>Changes sequential ordering of elements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex">
+      <div class="container">
+        <p class="citation-label">Citation</p>
+        <h2 class="citation-heading">Cite This Work</h2>
+        <div class="citation-card">
+          <div class="citation-copy" title="Copy" id="copy-button">
+            <i class="fa fa-clipboard" aria-hidden="true"></i> Copy
+          </div>
+          <pre id="bibtex-text">@article{hao2026domsteer,
+  title={Beyond Chat and Clicks: GUI Agents as In-Situ Assistants through Live Interface Transformation},
+  author={Hao, Pan and Selvakumaran, Rishi and Sun, Jacob and Wang, Qianwen},
+  year={2026}
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p class="less-spacing">Beyond Chat and Clicks &copy; 2026</p>
+        <div class="buttons">
+          <a class="button" href="#" title="Back to top">Back to top</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js" type="text/javascript"></script>
+  </body>
+</html>
