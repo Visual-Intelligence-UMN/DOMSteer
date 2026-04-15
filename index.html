@@ -81,30 +81,29 @@
       <div class="container">
         <h2>What acts beyond chat and clicks?</h2>
         <p>
-          Complex visual interfaces are powerful yet have a steep learning curve, as users must navigate feature-rich visual interfaces while reasoning about domain-specific operations. Existing approaches either deliver assistance through a separate chat-based interaction, or require substantial application-specific engineering to build support natively into each interface. To address the gaps, we propose <i>in-situ assistance</i>: a mode of support delivered directly within any live web interface through lightweight, browser-level interventions on the Document Object Model (DOM), without rebuilding the application or modifying its underlying logic.
+          Complex visual interfaces are powerful yet have a steep learning curve, as users must navigate feature-rich visual interfaces while reasoning about domain-specific operations. Existing approaches either deliver assistance through a separate chat-based interaction, or require substantial application-specific engineering to build support natively into each interface.
         </p>
-        <img
-          src="img/teaser.png"
-          title="DOMSteer Teaser"
-          class="full-width"
-          alt="DOMSteer teaser"
-          loading="lazy"
-        />
-        <p class="figure-caption">
-          <b>DOMSteer</b> delivers assistance directly within the live interface through three DOM operations: (A) <b>Mutate</b> that adapts existing elements, (B) <b>Insert</b> that adds new contextual content, and (C) <b>Recompose</b> that reorganizes interface structure.
+        <p>
+          To address the gaps, we propose <b><i>in-situ assistance</i></b>: a mode of support delivered directly within any live web interface through lightweight, browser-level interventions on the Document Object Model (DOM), without rebuilding the application or modifying its underlying logic.
         </p>
+        <div class="gallery">
+          <div class="gallery-frame">
+            <img id="teaser-img" src="img/teaser.png" class="gallery-media active" alt="DOMSteer teaser" />
+            <video id="teaser-vid" muted loop playsinline class="gallery-media">
+              <source src="clips/general-clip.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="gallery-controls">
+            <span class="gallery-dot active" data-index="0"></span>
+            <span class="gallery-dot" data-index="1"></span>
+          </div>
+          <p class="figure-caption">
+            We explore GUI agent action space beyond chat and clicks. DOMSteer delivers <b>in-situ assistance</b> directly within the live interface through three DOM operations: (A) <b class="clr-mutate">Mutate</b> that adapts existing elements, (B) <b class="clr-insert">Insert</b> that adds new contextual content, and (C) <b class="clr-recompose">Recompose</b> that reorganizes interface structure.
+          </p>
+        </div>
         <p>
           We contribute a design space and a computational pipeline for DOM-mediated in-situ assistance, characterizing how GUI agents can insert, mutate, or recompose web elements to make the interface easier for users to understand, use, and navigate. We instantiate <i>in-situ assistance</i> in DOMSteer, a Chrome extension that interprets a user's help request and live interface context, grounds it to relevant UI elements, and executes reversible DOM manipulations directly on the live page to deliver assistance, including contextual tooltips, control highlighting, layout reorganization.
         </p>
-      </div>
-    </section>
-
-    <section id="demo-video">
-      <div class="container">
-        <p class="task-text"><span class="task-label">Task:</span> How to design a generalizable neural network that works for all four classification datasets?</p>
-        <video autoplay muted loop playsinline width="100%">
-          <source src="clips/general-clip.mp4" type="video/mp4" />
-        </video>
       </div>
     </section>
 
@@ -156,31 +155,43 @@
 
     <section id="use-cases-highlight">
       <div class="container">
-        <p class="gray">Example use cases across different interfaces:</p>
+        <h2>More Cases of In-Situ Assistance</h2>
         <div class="two-col interface-grid">
           <div class="interface-card">
-            <p class="interface-desc"><i>"How do I get started?"</i> &mdash; <b class="clr-insert">Insert</b> tooltips to walk through the interface guidance.</p>
             <video autoplay muted loop playsinline class="interface-vid">
               <source src="clips/insert-tips-clip.mp4" type="video/mp4" />
             </video>
+            <div class="interface-info">
+              <h3 class="interface-title"><span class="clr-insert">Insert</span> Tooltips</h3>
+              <p class="interface-desc">When a user wonders <i>how to get started</i>, DOMSteer inserts contextual tooltips that walk through unfamiliar controls directly on the interface.</p>
+            </div>
           </div>
           <div class="interface-card">
-            <p class="interface-desc"><i>"Can I track historical settings?"</i> &mdash; <b class="clr-insert">Insert</b> a widget to capture snapshots of the interface.</p>
             <video autoplay muted loop playsinline class="interface-vid">
               <source src="clips/insert-widget.mp4" type="video/mp4" />
             </video>
+            <div class="interface-info">
+              <h3 class="interface-title"><span class="clr-insert">Insert</span> Widget</h3>
+              <p class="interface-desc">When a user wants to <i>track historical settings</i>, DOMSteer inserts a snapshot widget that captures configurations across sessions.</p>
+            </div>
           </div>
           <div class="interface-card">
-            <p class="interface-desc"><i>"What do the node colors mean?"</i> &mdash; <b class="clr-recompose">Recompose</b> the order of the node types.</p>
             <video autoplay muted loop playsinline class="interface-vid">
               <source src="clips/recompose-order.mp4" type="video/mp4" />
             </video>
+            <div class="interface-info">
+              <h3 class="interface-title"><span class="clr-recompose">Recompose</span> Order</h3>
+              <p class="interface-desc">When a user is confused by <i>what the node colors mean</i>, DOMSteer recomposes the legend order so color meanings are immediately clear.</p>
+            </div>
           </div>
           <div class="interface-card">
-            <p class="interface-desc"><i>"Why does the map look empty?"</i> &mdash; <b class="clr-mutate">Mutate</b> the dropdown representation to a button group.</p>
             <video autoplay muted loop playsinline class="interface-vid">
               <source src="clips/mutate-rep.mp4" type="video/mp4" />
             </video>
+            <div class="interface-info">
+              <h3 class="interface-title"><span class="clr-mutate">Mutate</span> Representation</h3>
+              <p class="interface-desc">When a user notices <i>the map looks empty</i>, DOMSteer mutates the hidden dropdown into a visible button group, surfacing filter options at a glance.</p>
+            </div>
           </div>
         </div>
       </div>

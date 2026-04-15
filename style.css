@@ -236,7 +236,7 @@ section:nth-of-type(even) {
 }
 
 #design-pipeline {
-  background: var(--white) !important;
+  background: var(--grey-lightest) !important;
 }
 
 #demo-video {
@@ -269,31 +269,86 @@ section:nth-of-type(even) {
 }
 
 .interface-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.interface-name {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: calc(14px + 0.2vw);
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 0.2rem;
-}
-
-.interface-desc {
-  font-size: calc(11px + 0.15vw);
-  line-height: 1.5;
-  color: var(--grey);
-  margin-bottom: 0.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
 .interface-vid {
   width: 100%;
-  border-radius: 8px;
   display: block;
-  box-shadow: none;
+}
+
+.interface-info {
+  padding: 1.2rem 1.4rem 1.5rem;
+}
+
+.interface-title {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: calc(12px + 0.15vw);
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+  color: var(--dark);
+}
+
+.interface-desc {
+  font-size: calc(12px + 0.15vw);
+  line-height: 1.6;
+  color: var(--grey);
+}
+
+/* --- Gallery --- */
+.gallery {
+  position: relative;
+  margin: 1rem auto 0.5rem;
+  max-width: 85%;
+}
+
+.gallery-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gallery-media.active {
+  opacity: 1;
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grey-light);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.gallery-dot.active {
+  background: var(--primary);
 }
 
 /* --- Figure caption --- */
@@ -345,12 +400,18 @@ video::cue {
   gap: 2.5rem;
 }
 
+.two-col-item {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 .two-col-item h2 {
   font-size: calc(15px + 0.3vw);
 }
 
 .two-col-item img {
   max-width: 100%;
+  align-self: center;
 }
 
 .two-col-item p {
@@ -358,6 +419,7 @@ video::cue {
   line-height: 1.6;
   color: var(--grey);
   margin-top: 0.5rem;
+  align-self: end;
 }
 
 @media (max-width: 700px) {
@@ -607,13 +669,18 @@ video::cue {
 }
 
 /* --- Citation / BibTeX --- */
+#bibtex {
+  background: linear-gradient(180deg, var(--grey-lightest) 0%, #e8e6df 100%) !important;
+  padding: calc(30px + 2vw) 0;
+}
+
 .citation-label {
   font-size: calc(11px + 0.1vw);
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--primary);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .citation-heading {
@@ -621,42 +688,42 @@ video::cue {
   font-size: calc(18px + 0.5vw);
   font-weight: 700;
   color: var(--dark);
-  border-bottom: 3px solid var(--primary);
-  padding-bottom: 0.4rem;
+  border-bottom: none;
+  padding-bottom: 0;
   margin-bottom: 1rem;
-  display: inline-block;
+  display: block;
 }
 
 .citation-card {
   position: relative;
   background: var(--white);
-  border: 1px solid #e2e5ea;
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
+  border: none;
+  border-radius: 14px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .citation-copy {
   position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
+  top: 1.2rem;
+  right: 1.2rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.9rem;
-  background: transparent;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-  border-radius: 6px;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  background: #f3f1ec;
+  color: var(--dark);
+  border: 1px solid #ddd9d0;
+  border-radius: 8px;
   font-family: "Open Sans", sans-serif;
-  font-size: calc(10px + 0.1vw);
+  font-size: calc(10px + 0.12vw);
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .citation-copy:hover {
-  background: var(--accent);
-  color: var(--white);
+  background: #e8e5de;
 }
 
 #bibtex-text {
@@ -664,12 +731,13 @@ video::cue {
   border: none;
   border-radius: 0;
   padding: 0;
+  padding-right: 5rem;
   margin: 0;
   font-family: "Courier New", Courier, monospace;
-  font-size: calc(11px + 0.15vw);
-  line-height: 1.7;
+  font-size: calc(11px + 0.18vw);
+  line-height: 1.8;
   overflow-x: auto;
-  color: var(--dark);
+  color: #2c2c2c;
 }
 
 /* --- Footer --- */
