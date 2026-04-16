@@ -324,11 +324,20 @@ section:nth-of-type(even) {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: scale(0.95) translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
 }
 
 .gallery-media.active {
   opacity: 1;
+  transform: scale(1) translateX(0);
+  pointer-events: auto;
+}
+
+.gallery-media.exit-left {
+  opacity: 0;
+  transform: scale(0.95) translateX(-30px);
 }
 
 .gallery-controls {
@@ -339,16 +348,27 @@ section:nth-of-type(even) {
 }
 
 .gallery-dot {
-  width: 8px;
-  height: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: var(--grey-light);
+  background: #e2e5ea;
+  color: var(--grey-light);
+  font-size: 11px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.gallery-dot:hover {
+  background: #d0d4da;
+  color: var(--grey);
 }
 
 .gallery-dot.active {
   background: var(--primary);
+  color: var(--white);
 }
 
 /* --- Figure caption --- */

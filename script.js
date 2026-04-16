@@ -63,12 +63,20 @@ document.querySelectorAll(".tab").forEach(function (tab) {
   var timer = null;
 
   function show(index) {
-    items.forEach(function (el) { el.classList.remove("active"); });
-    dots.forEach(function (d) { d.classList.remove("active"); });
+    if (index === current) return;
+    var prev = current;
+
+    items[prev].classList.remove("active");
+    items[prev].classList.add("exit-left");
+    if (items[prev].tagName === "VIDEO") items[prev].pause();
+
+    setTimeout(function () {
+      items[prev].classList.remove("exit-left");
+    }, 600);
+
     items[index].classList.add("active");
+    dots.forEach(function (d) { d.classList.remove("active"); });
     dots[index].classList.add("active");
-    // pause all videos, play the active one if it's a video
-    items.forEach(function (el) { if (el.tagName === "VIDEO") el.pause(); });
     if (items[index].tagName === "VIDEO") items[index].play();
     current = index;
   }
