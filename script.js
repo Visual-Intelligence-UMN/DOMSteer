@@ -1,3 +1,18 @@
+/* --- Scroll fade-in animation --- */
+(function () {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".fade-in").forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+
 /* --- Progress bar (inverted: gray cover shrinks as you scroll) --- */
 (function () {
   var bar = document.getElementById("progressbar");
@@ -52,6 +67,44 @@ document.querySelectorAll(".tab").forEach(function (tab) {
     document.getElementById(this.getAttribute("data-tab")).classList.add("active");
   });
 });
+
+
+/* --- Carousel: shuffle + slow auto-scroll --- */
+(function () {
+  var track = document.querySelector(".carousel-track");
+  if (!track) return;
+
+  // Shuffle cards randomly
+  var cards = Array.from(track.children);
+  for (var i = cards.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    track.appendChild(cards[j]);
+    cards.splice(j, 1, cards[i]);
+  }
+
+  var speed = 0.5;
+  var direction = 1;
+  var paused = false;
+
+  function autoScroll() {
+    if (!paused) {
+      track.scrollLeft += speed * direction;
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      if (track.scrollLeft >= maxScroll) direction = -1;
+      if (track.scrollLeft <= 0) direction = 1;
+    }
+    requestAnimationFrame(autoScroll);
+  }
+
+  track.addEventListener("mouseenter", function () { paused = true; });
+  track.addEventListener("mouseleave", function () { paused = false; });
+  track.addEventListener("touchstart", function () { paused = true; }, { passive: true });
+  track.addEventListener("touchend", function () {
+    setTimeout(function () { paused = false; }, 3000);
+  });
+
+  requestAnimationFrame(autoScroll);
+})();
 
 /* --- Gallery (auto-rotate figure / video) --- */
 (function () {
