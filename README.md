@@ -1,1 +1,1 @@
-# Beyond Chat and Clicks: GUI Agents as In-Situ Assistants through Live Interface Transformation
+# Beyond Chat and Clicks: GUI Agents for In-Situ Assistance via Live Interface Transformation
